@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% now "Y" as current_year %}
+{% now "m" as current_month %}
+{% now "d" as current_day %}
+
+<a href="{% url 'daily' current_year current_month current_day %}">Today's Tracker</a>
+
+{% endblock content %}

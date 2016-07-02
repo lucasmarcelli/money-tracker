@@ -1,0 +1,9 @@
+.editable {
+
+  td {
+    -webkit-user-modify: read-write;
+    -moz-user-modify: read-write;
+    user-modify: read-write;
+    min-width: 2em;
+  }
+}
