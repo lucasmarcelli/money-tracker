@@ -4660,6 +4660,9 @@ a.bg-danger:focus, a.bg-danger:hover {
   -moz-user-modify: read-write;
   user-modify: read-write; }
 
+.table-div {
+  display: table; }
+
 table .reason {
   width: 20em; }
 table .company, table .item {

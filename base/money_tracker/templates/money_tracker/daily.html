@@ -3,118 +3,72 @@
 {% block content %}
 
 {% load staticfiles %}
-<table class = "table table-striped editable">
-<thead>
-  <tr>
-    <th class="company">
-        Company
-    </th>
-    <th class="item">
-        Item
-    </th>
-    <th class="amount">
-        Amount
-    </th>
-    <th class="reason">
-        Reason
-    </th>
-    <th class="unnecessary">
-        Unnecessary
-    </th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td class="company">
-    </td>
-    <td class="item">
-    </td>
-    <td class="amount">
-    </td>
-    <td class="reason">
-    </td>
-    <td class="unnecessary">
-      <input type="checkbox"></input>
-    </td>
-  </tr>
-  <tr>
-    <td class="company">
-    </td>
-    <td class="item">
-    </td>
-    <td class="amount">
-    </td>
-    <td class="reason">
-    </td>
-    <td class="unnecessary">
-      <input type="checkbox"></input>
-    </td>
-  </tr>
-  <tr>
-    <td class="company">
-    </td>
-    <td class="item">
-    </td>
-    <td class="amount">
-    </td>
-    <td class="reason">
-    </td>
-    <td class="unnecessary">
-      <input type="checkbox"></input>
-    </td>
-  </tr>
-  <tr>
-    <td class="company">
-    </td>
-    <td class="item">
-    </td>
-    <td class="amount">
-    </td>
-    <td class="reason">
-    </td>
-    <td class="unnecessary">
-      <input type="checkbox"></input>
-    </td>
-  </tr>
-  <tr>
-    <td class="company">
-    </td>
-    <td class="item">
-    </td>
-    <td class="amount">
-    </td>
-    <td class="reason">
-    </td>
-    <td class="unnecessary">
-      <input type="checkbox"></input>
-    </td>
-  </tr>
-  <tr>
-    <td class="company">
-    </td>
-    <td class="item">
-    </td>
-    <td class="amount">
-    </td>
-    <td class="reason">
-    </td>
-    <td class="unnecessary">
-      <input type="checkbox"></input>
-    </td>
-  </tr>
-  <tr>
-    <td class="company">
-    </td>
-    <td class="item">
-    </td>
-    <td class="amount">
-    </td>
-    <td class="reason">
-    </td>
-    <td class="unnecessary">
-      <input type="checkbox"></input>
-    </td>
-  </tr>
-</tbody>
+
+{% csrf_token %}
+<div class="content clearfix">
+  <div class="row clearfix daily-div">
+  <table class = "table table-striped editable daily-table">
+    <thead>
+      <tr>
+        <th class="company">
+            Company
+        </th>
+        <th class="item">
+            Item
+        </th>
+        <th class="amount-in">
+            Amount In
+        </th>
+        <th class="amount-out">
+            Amount Out
+        </th>
+        <th class="reason">
+            Reason
+        </th>
+        <th class="unnecessary">
+            Unnecessary
+        </th>
+      </tr>
+    </thead>
+    <tbody id="daily-body">
+      {% for row in object_list %}
+      <tr>
+        <td class="company">{{ row.company }}</td>
+        <td class="item">{{ row.item }}</td>
+        <td class="amount-in">{{ row.amount_in }}</td>
+        <td class="amount-out">{{ row.amount_out }}</td>
+        <td class="reason">{{ row.reason }}</td>
+        <td class="unnecessary">
+          {% if row.unnecessary == True %}
+          <input type="checkbox" class="unnecessary-box" checked></input>
+          {% else %}
+          <input type="checkbox" class="unnecessary-box"></input>
+          {% endif %}
+        </td>
+        <td class="pk" style="display:none">{{ row.pk }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td class="company"></td>
+        <td class="item"></td>
+        <td class="amount-in"></td>
+        <td class="amount-out"></td>
+        <td class="reason"></td>
+        <td class="unnecessary">
+          <input type="checkbox" class="unnecessary-box"></input>
+        </td>
+        <td class="pk" style="display:none">-1</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  </div>
+  <div class="row">
+      <button id="send-daily" class="btn btn-success">Save</button>
+      <button class="btn btn-info" id="add-row-daily">Add Row</button>
+  </div>
+</div>
+
 
 {% endblock content %}
